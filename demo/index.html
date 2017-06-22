@@ -1,7 +1,7 @@
 <!doctype html>
 <!--
 @license
-Copyright © 2017 HatioLab Inc. All rights reserved.  
+Copyright © 2017 HatioLab Inc. All rights reserved.
 -->
 <html>
   <head>
@@ -19,7 +19,7 @@ Copyright © 2017 HatioLab Inc. All rights reserved.
     <link rel="import" href="./things-scene-stomp.html">
 
     <link rel="import" href="./things-theme.html">
-    
+
     <style is="custom-style" include="things-theme">
     things-scene-viewer {
       display: block;
@@ -37,7 +37,7 @@ Copyright © 2017 HatioLab Inc. All rights reserved.
                            scene='{{scene}}'
                            selected='{{selected}}'
                            model='[[model]]'
-                           mode="1">
+                           mode="0">
         <things-scene-layer type="selection-layer"></things-scene-layer>
         <things-scene-layer type="modeling-layer"></things-scene-layer>
         <things-scene-handler type="text-editor"></things-scene-handler>
@@ -79,6 +79,7 @@ Copyright © 2017 HatioLab Inc. All rights reserved.
           height: 480,
           components: [{
             type: 'stomp',
+            id: "data_src",
             top: 100,
             left: 100,
             width:200,
@@ -89,8 +90,10 @@ Copyright © 2017 HatioLab Inc. All rights reserved.
             strokeStyle: '#000',
             lineWidth: 5,
             value: 40,
-            text: '#{value}',
-            lineCap: 'round'
+            text: '#{data}',
+            lineCap: 'round',
+            url: 'http://localhost:9092/elidom/stomp',
+            subject: '/elidom/stomp/topic/hatiolab-hq/smart/SCENE-265'
           }]
         }
       });
