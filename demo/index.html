@@ -82,8 +82,8 @@ Copyright © 2017 HatioLab Inc. All rights reserved.
             id: "data_src",
             top: 100,
             left: 100,
-            width:200,
-            height: 70,
+            width:50,
+            height: 50,
             fontSize: 40,
             fillStyle: '#00ff00',
             fontColor: '#FF0000',
@@ -92,8 +92,17 @@ Copyright © 2017 HatioLab Inc. All rights reserved.
             value: 40,
             text: '#{data}',
             lineCap: 'round',
+            hidden: true,
             url: 'http://localhost:9092/elidom/stomp',
-            subject: '/elidom/stomp/topic/hatiolab-hq/smart/SCENE-265'
+            subject: '/elidom/stomp/topic/board/6'
+          }, {
+            type: 'text',
+            id: 'text',
+            text: 'Data is #{data}',
+            width: 300,
+            height: 100,
+            left: 300,
+            top: 150
           }]
         }
       });

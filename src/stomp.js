@@ -8,12 +8,12 @@ const NATURE = {
   rotatable: true,
   properties: [{
     type: 'string',
-    label: 'URL',
+    label: 'url',
     name: 'url',
     property: 'url'
   }, {
     type: 'string',
-    label: 'Subject',
+    label: 'subject',
     name: 'subject',
     property: 'subject'
   }]
