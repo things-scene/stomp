@@ -100,7 +100,8 @@ export default class Stomp extends ValueHolder(RectPath(Shape)) {
 
   }
 
-  disposed() {
+  dispose() {
+    super.dispose();
     // TODO: unsubscribe and stop polling interval timer
     this.disconnect();
   }
