@@ -16,6 +16,19 @@ const NATURE = {
     label: 'subject',
     name: 'subject',
     property: 'subject'
+  }, {
+    type: 'select',
+    label: 'data-format',
+    name: 'dataFormat',
+    property: {
+      options: [{
+        display: 'Plain Text',
+        value: 'text'
+      }, {
+        display: 'JSON',
+        value: 'json'
+      }]
+    }
   }]
 }
 
@@ -107,16 +120,30 @@ export default class Stomp extends ValueHolder(RectPath(Shape)) {
   }
 
   _subscribe() {
+    var {
+      dataFormat = 'text'
+    } = this.model
 
     this.subscription = this.client.subscribe(this.subject, function (message) {
-      var variables = JSON.parse(message.body);
+      var data = message.body;
 
-      if (!variables)
-        return
+      this.data = this._formatData(data, dataFormat)
 
-      for (var key in variables)
-        this.root.variable(key, variables[key]);
     }.bind(this));
+  }
+
+  _formatData(data, format) {
+    var formattedData
+    switch (format) {
+      case 'json':
+        formattedData = JSON.parse(data)
+        break;
+      default:
+        formattedData = data
+        break;
+    }
+
+    return formattedData
   }
 
   disconnect() {
