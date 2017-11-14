@@ -5,7 +5,7 @@
 * 데이타 형식은 Plain Text와 JSON 형식을 지원한다.
 ## 설정
 ### RabbitMQ의 Stomp-Websocket 플러그인을 사용한 경우
-* url : http://{hostname}:{port}/stomp
+* url : http://{hostname}:{port=>15674}/stomp
 * login : username
 * passcode : password
 * subject : subject
