@@ -11,7 +11,7 @@
 * subject : subject
 * data-format : Plain Text 또는 JSON
 * debug : console에 debug 정보를 출력할 지를 선택
-## Rabbit MQ의 Stomp-Websocket 플러그인을 사용하는 경우 메시지 Exchange
+## Rabbit MQ의 Stomp-Websocket 플러그인을 사용하는 경우 메시지 전송
 ```
 Rabbit MQ의 Stomp-Websocket 플러그인을 사용하는 경우,
 Subject 속성과 동일한 AMQP의 Queue로 보낸 메시지를 받게된다.
