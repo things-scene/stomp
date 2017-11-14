@@ -10,12 +10,23 @@ const NATURE = {
     type: 'string',
     label: 'url',
     name: 'url',
-    property: 'url'
+    property: 'url',
+    placeholder: 'http://127.0.0.1:15674/stomp'
   }, {
     type: 'string',
     label: 'subject',
     name: 'subject',
     property: 'subject'
+  }, {
+    type: 'string',
+    label: 'login',
+    name: 'login',
+    property: 'login'
+  }, {
+    type: 'string',
+    label: 'passcode',
+    name: 'passcode',
+    property: 'passcode'
   }, {
     type: 'select',
     label: 'data-format',
@@ -29,6 +40,11 @@ const NATURE = {
         value: 'json'
       }]
     }
+  }, {
+    type: 'checkbox',
+    label: 'debug',
+    name: 'debug',
+    property: 'debug'
   }]
 }
 
@@ -50,38 +66,6 @@ export default class Stomp extends DataSource(RectPath(Shape)) {
     return Stomp._image
   }
 
-  get client() {
-    return this._client;
-  }
-
-  set client(client) {
-    this._client = client;
-  }
-
-  get subscription() {
-    return this._subscription;
-  }
-
-  set subscription(subscription) {
-    this._subscription = subscription;
-  }
-
-  get subject() {
-    return this.model.subject
-  }
-
-  set subject(subject) {
-    this.model.subject = subject
-  }
-
-  get url() {
-    return this.model.url
-  }
-
-  set url(url) {
-    this.model.url = url
-  }
-
   added() {
     if (!this.app.isViewMode)
       return;
@@ -91,60 +75,49 @@ export default class Stomp extends DataSource(RectPath(Shape)) {
 
   _initStomp() {
 
-    this.disconnect()
-
-    var socket = new SockJS(this.url);
-    this.client = StompCli.over(socket);
-
-    var self = this
-    // this allows to display debug logs directly on the web page
-    this.client.debug = function (str) {
-      // console.log(str)
-    };
-
-    // the client is notified when it is connected to the server.
-    // client.connect(login, passcode, function(frame) {
-    this.client.connect({}, function (frame) {
-      console.info("Stomp connected!")
-      this._subscribe();
-    }.bind(this));
-
-    this._isStarted = true;
-
-  }
-
-  dispose() {
-    super.dispose();
-    // TODO: unsubscribe and stop polling interval timer
-    this.disconnect();
-  }
-
-  _subscribe() {
     var {
+      debug = false,
+      subject,
+      login,
+      passcode,
       dataFormat = 'text'
     } = this.model
 
-    this.subscription = this.client.subscribe(this.subject, function (message) {
-      var data = message.body;
+    var socket = new SockJS(this.url);
+    this._client = StompCli.over(socket);
 
-      this.data = this._convertDataFormat(data, dataFormat)
+    var self = this
 
-    }.bind(this));
+    if (!debug)
+      this._client.debug = () => {} /* noop */
+
+    this._client.connect(login, passcode,
+    () => { /* on_connect */
+      console.info("Stomp connected!")
+
+      this._client.subscribe(subject, message => {
+        this.data = this._convertDataFormat(message.body, dataFormat)
+      })
+    }, () => { /* on_error */
+      console.info("Stomp connect failed!")
+    }, '/');
+  }
+
+  dispose() {
+    try {
+      this._client
+      && this._client.connected
+      && this._client.disconnect(() => console.info('stomp subscrition disconnected'))
+    } catch(e) {
+      console.error(e)
+    }
+
+    delete this._client
+
+    super.dispose();
   }
 
   disconnect() {
-    /* implementation for stomp */
-    if (this.client) {
-      if (this.client.connected) {
-        this.client.disconnect(function () {
-          console.info('stomp subscrition disconnected')
-        });
-      }
-
-      this.client = null
-    }
-
-    this._isStarted = false;
   }
 
   _draw(context) {
@@ -158,8 +131,6 @@ export default class Stomp extends DataSource(RectPath(Shape)) {
     context.beginPath();
     context.drawImage(Stomp.image, left, top, width, height);
   }
-
-  get controls() { }
 
   get nature() {
     return NATURE;
