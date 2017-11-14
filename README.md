@@ -29,6 +29,7 @@ amqp.connect('amqp://hatiolab:hatiolab@mq.hatiolab.com', function(err, conn) {
   }
 
   conn.createChannel(function (err, ch) {
+    // q 이름을 subject 속성과 동일하게.
     var q = 'location';
 
     ch.assertQueue(q, { durable: true });
