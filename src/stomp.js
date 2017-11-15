@@ -76,6 +76,7 @@ export default class Stomp extends DataSource(RectPath(Shape)) {
   _initStomp() {
 
     var {
+      url,
       debug = false,
       subject,
       login,
@@ -83,7 +84,7 @@ export default class Stomp extends DataSource(RectPath(Shape)) {
       dataFormat = 'text'
     } = this.model
 
-    var socket = new SockJS(this.url);
+    var socket = new SockJS(url);
     this._client = StompCli.over(socket);
 
     var self = this
