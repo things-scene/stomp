@@ -48,8 +48,9 @@ const NATURE = {
   }]
 }
 
-import StompCli from 'stompjs';
-import SockJS from 'sockjs-client';
+import SockJS from "sockjs-client"
+import StompCli from "@stomp/stompjs"
+
 // const StompCli = require('stompjs')
 // const SockJS = require('sockjs-client')
 

@@ -1,25 +1,21 @@
-import locales from './locales'
+import locales from './locales';
+
+import icon from './assets/stomp.png';
 
 var templates = [{
-  name: 'stomp',
-  /* 다국어 키 표현을 어떻게.. */
-  description: '...',
-  /* 다국어 키 표현을 어떻게.. */
+  type: 'stomp',
+  description: 'stomp client',
   group: 'dataSource',
   /* line|shape|textAndMedia|chartAndGauge|table|container|dataSource|IoT|3D|warehouse|form|etc */
-  icon: '../',
-  /* 또는, Object */
-  template: {
-    type: 'stomp',
-    model: {
-      type: "stomp",
-      left: 10,
-      top: 10,
-      width: 100,
-      height: 100,
-      hidden: true,
-      dataFormat: 'json'
-    }
+  icon,
+  model: {
+    type: "stomp",
+    left: 10,
+    top: 10,
+    width: 100,
+    height: 100,
+    hidden: true,
+    dataFormat: 'json'
   }
 }];
 

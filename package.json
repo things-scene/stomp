@@ -1,7 +1,7 @@
 {
   "name": "@things-elements/things-scene-stomp",
-  "version": "0.1.7",
-  "description": "An element providing a starting point for your own reusable Polymer elements.",
+  "version": "0.1.9",
+  "description": "Stomp Client Component for Things Scene.",
   "main": "src/index.js",
   "things-shell": true,
   "directories": {
@@ -26,8 +26,8 @@
     "@hatiolab/things-shell": "^0.2.25"
   },
   "dependencies": {
-    "sockjs-client": "^1.1.4",
-    "stompjs": "^2.3.3",
-    "@hatiolab/things-scene": "^2.2.36"
+    "@hatiolab/things-scene": "^2.2.36",
+    "@stomp/stompjs": "^4.0.2",
+    "sockjs-client": "^1.1.4"
   }
 }
