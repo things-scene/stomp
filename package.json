@@ -1,6 +1,6 @@
 {
   "name": "@things-scene/stomp",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Stomp Client Component for Things Scene.",
   "things-scene": true,
   "main": "src/index.js",
@@ -8,9 +8,10 @@
     "test": "test"
   },
   "scripts": {
-    "serve": "watchify src/*.js -o things-scene-stomp.js src/index.js & polymer serve",
-    "test": "./node_modules/.bin/mocha --require should --compilers js:babel-core/register test/**/test-*.js",
-    "build": "browserify src/index.js -o things-scene-stomp.js && uglifyjs things-scene-stomp.js -o things-scene-stomp-min.js"
+    "serve": "things-shell",
+    "serve:dev": "things-shell-dev",
+    "build": "webpack",
+    "prepublish": "webpack"
   },
   "repository": {
     "type": "git",
@@ -23,10 +24,10 @@
   },
   "homepage": "https://github.com/ThingsElements/things-scene-stomp#readme",
   "devDependencies": {
-    "@hatiolab/things-shell": "^0.3.0"
+    "@hatiolab/things-shell": "*"
   },
   "dependencies": {
-    "@hatiolab/things-scene": "^2.2.36",
+    "@hatiolab/things-scene": "*",
     "@stomp/stompjs": "^4.0.2",
     "sockjs-client": "^1.1.4"
   }
