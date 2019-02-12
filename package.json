@@ -1,6 +1,6 @@
 {
   "name": "@things-scene/stomp",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "Stomp Client Component for Things Scene.",
   "things-scene": true,
   "main": "dist/things-scene-stomp.mjs",
