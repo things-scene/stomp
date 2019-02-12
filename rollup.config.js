@@ -2,13 +2,17 @@ import babel from "rollup-plugin-babel";
 import resolve from "rollup-plugin-node-resolve";
 import commonjs from "rollup-plugin-commonjs";
 import { terser } from "rollup-plugin-terser";
-import graphql from "rollup-plugin-graphql";
+import builtins from "rollup-plugin-node-builtins";
+import globals from "rollup-plugin-node-globals";
+import json from "rollup-plugin-json";
 
 let pkg = require("./package.json");
 let external = Object.keys(pkg.dependencies);
 let plugins = [
-  graphql(),
-  resolve(),
+  resolve({ browser: true, preferBuiltins: false }),
+  globals(),
+  builtins(),
+  json(),
   babel(),
   commonjs(),
   terser({
@@ -37,14 +41,7 @@ export default [
   {
     input: "src/index.js",
     plugins,
-    external: [
-      "@hatiolab/things-scene",
-      "events",
-      "websocket",
-      "util",
-      "url",
-      "websocket-driver"
-    ],
+    external: ["@hatiolab/things-scene"],
     output: [
       {
         file: pkg.module,
