@@ -1,9 +1,9 @@
 {
   "name": "@things-scene/stomp",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Stomp Client Component for Things Scene.",
   "things-scene": true,
-  "main": "src/index.js",
+  "main": "dist/things-scene-stomp.mjs",
   "module": "dist/things-scene-stomp.mjs",
   "jsnext:main": "dist/things-scene-stomp.mjs",
   "directories": {
@@ -27,7 +27,9 @@
   },
   "homepage": "https://github.com/ThingsElements/things-scene-stomp#readme",
   "devDependencies": {
-    "@hatiolab/things-shell": "*"
+    "@hatiolab/things-shell": "*",
+    "rollup-plugin-node-builtins": "^2.1.2",
+    "rollup-plugin-node-globals": "^1.4.0"
   },
   "dependencies": {
     "@hatiolab/things-scene": "^2.5.0-rc",
