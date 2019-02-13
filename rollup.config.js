@@ -9,12 +9,12 @@ import json from "rollup-plugin-json";
 let pkg = require("./package.json");
 let external = Object.keys(pkg.dependencies);
 let plugins = [
-  resolve({ browser: true, preferBuiltins: false }),
+  commonjs(),
   globals(),
   builtins(),
   json(),
   babel(),
-  commonjs(),
+  resolve({ browser: true, preferBuiltins: true }),
   terser({
     sourcemap: true
   })
