@@ -1,11 +1,9 @@
 {
   "name": "@things-scene/stomp",
-  "version": "0.4.6",
+  "version": "0.4.7",
   "description": "Stomp Client Component for Things Scene.",
   "things-scene": true,
-  "main": "dist/things-scene-stomp.mjs",
-  "module": "dist/things-scene-stomp.mjs",
-  "jsnext:main": "dist/things-scene-stomp.mjs",
+  "main": "src/index.js",
   "directories": {
     "test": "test"
   },
