@@ -1,5 +1,3 @@
-import locales from './locales';
-
 import icon from './assets/stomp.png';
 
 var templates = [{
@@ -20,6 +18,5 @@ var templates = [{
 }];
 
 export default {
-  templates,
-  locales
+  templates
 };
