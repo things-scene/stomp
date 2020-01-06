@@ -1,6 +1,6 @@
 {
   "name": "@things-scene/stomp",
-  "version": "0.4.8",
+  "version": "0.4.9",
   "description": "Stomp Client Component for Things Scene.",
   "things-scene": true,
   "main": "src/index.js",
@@ -27,8 +27,8 @@
   },
   "homepage": "https://github.com/ThingsElements/things-scene-stomp#readme",
   "devDependencies": {
-    "@things-factory/board-app": "*",
-    "@things-factory/board-test": "*",
+    "@things-factory/board-app": "^2.0.0",
+    "@things-factory/board-test": "^2.0.0",
     "rollup-plugin-alias": "^1.5.1",
     "rollup-plugin-json": "^3.1.0",
     "rollup-plugin-node-builtins": "^2.1.2",
